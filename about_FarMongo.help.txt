@@ -1,0 +1,22 @@
+TOPIC
+    about_FarMongo
+
+SHORT DESCRIPTION
+    MongoDB tools for Far Manager
+
+LONG DESCRIPTION
+    **WARNING**: With this module tools you can change and delete databases,
+    collections, documents, and data. Use it on your own risk and be careful.
+
+    Requires:
+    - Far Manager, FarNet, PowerShellFar
+    - MongoDB server http://www.mongodb.org/
+    - Mdbc module https://www.powershellgallery.com/packages/Mdbc
+
+    The module provides the following commands:
+
+        Open-MongoPanel
+
+SEE ALSO
+    README https://github.com/nightroman/FarMongo/blob/master/README.md
+    Release Notes https://github.com/nightroman/FarMongo/blob/master/Release-Notes.md
