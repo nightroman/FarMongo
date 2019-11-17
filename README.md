@@ -16,10 +16,14 @@ Requires:
 Install the module from the PowerShell gallery by this command:
 
 ```powershell
-Install-Module FarMongo
+Save-Module FarMongo -Path $env:FARHOME\FarNet\Modules\PowerShellFar\Modules
 ```
 
-In Far Manager with FarNet and PowerShellFar, import the module:
+You can use the usual `Install-Module FarMongo` command, too, it's fine.
+But the module works only with Far Manager, FarNet, and PowerShellFar.
+PowerShellFar has its own special directory for PowerShell modules.
+
+In Far Manager, import the module:
 
 ```
 ps: Import-Module FarMongo
