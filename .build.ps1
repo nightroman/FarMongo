@@ -3,6 +3,7 @@
 	Build script (https://github.com/nightroman/Invoke-Build)
 #>
 
+Set-StrictMode -Version Latest
 $ModuleName = 'FarMongo'
 
 # Synopsis: Remove temp files.
@@ -12,9 +13,10 @@ task Clean {
 
 # Synopsis: Set $script:Version.
 task Version {
-	($script:Version = switch -Regex -File Release-Notes.md {'##\s+v(\d+\.\d+\.\d+)' {return $Matches[1]} })
+	$script:Version = switch -Regex -File Release-Notes.md {'##\s+v(\d+\.\d+\.\d+)' {$Matches[1]; break} }
 	$data = & ([scriptblock]::Create([IO.File]::ReadAllText("$ModuleName.psd1")))
-	assert ($data.ModuleVersion -eq $script:Version)
+	assert ($data.ModuleVersion -eq $Version)
+	$Version
 }
 
 # Synopsis: Make the package in z\$ModuleName.
