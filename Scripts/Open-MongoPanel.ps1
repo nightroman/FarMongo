@@ -26,6 +26,14 @@
 	[ShiftF6]
 		Prompts for a new name and renames the current collection.
 
+	[F4]
+		Edits documents in the documents panel.
+		It opens the editor with current document JSON.
+
+	[F7]
+		Creates new documents in the documents panel.
+		It opens the modal editor for the new document JSON.
+
 .Parameter ConnectionString
 		Specifies the connection string. Use "." for the default local server.
 		If DatabaseName and CollectionName are omitted then the panel shows

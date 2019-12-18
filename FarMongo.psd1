@@ -1,6 +1,6 @@
 @{
 	Author = 'Roman Kuzmin'
-	ModuleVersion = '0.1.0'
+	ModuleVersion = '0.0.0'
 	Description = 'MongoDB tools for Far Manager'
 	CompanyName = 'https://github.com/nightroman'
 	Copyright = 'Copyright (c) Roman Kuzmin'

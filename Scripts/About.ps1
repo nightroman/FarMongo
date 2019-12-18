@@ -1,3 +1,11 @@
+$ErrorActionPreference = 1
+Import-Module Mdbc
+
+. $PSScriptRoot\New-FMCollectionExplorer.ps1
+. $PSScriptRoot\New-FMDatabaseExplorer.ps1
+. $PSScriptRoot\New-FMServerExplorer.ps1
+. $PSScriptRoot\Open-MongoPanel.ps1
+
 function Get-FMSourceCollection($Collection) {
 	$Database = $Collection.Database
 	$views = Get-MdbcCollection system.views
