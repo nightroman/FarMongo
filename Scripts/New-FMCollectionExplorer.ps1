@@ -1,12 +1,21 @@
 
-function New-FMCollectionExplorer($Collection, $Pipeline) {
+function New-FMCollectionExplorer {
+	param(
+		[Parameter(Position=0)]
+		$Collection,
+		[Parameter(Position=1)]
+		$Pipeline,
+		$BsonFile
+	)
 	New-Object PowerShellFar.ObjectExplorer -Property @{
-		FileComparer = [PowerShellFar.FileMetaComparer]'_id'
 		Data = @{
 			Collection = $Collection
 			Pipeline = $Pipeline
+			BsonFile = $BsonFile
 			Source = Get-FMSourceCollection $Collection
+			ChangeCount = 0
 		}
+		FileComparer = [PowerShellFar.FileMetaComparer]'_id'
 		AsCreateFile = {FMCollectionExplorer_AsCreateFile @args}
 		AsCreatePanel = {FMCollectionExplorer_AsCreatePanel @args}
 		AsDeleteFiles = {FMCollectionExplorer_AsDeleteFiles @args}
@@ -16,12 +25,47 @@ function New-FMCollectionExplorer($Collection, $Pipeline) {
 	}
 }
 
+function FMCollectionPanel_Escaping {
+	# skip not changed
+	if ($this.Explorer.Data.ChangeCount -eq 0) {
+		return
+	}
+
+	# prompt to export
+	$r = Show-FarMessage 'Export data to file?' -Caption Export -Buttons YesNoCancel
+	if ($r -eq 0) {
+		# save, let close
+		Save-BsonFile -Collection $this.Explorer.Data.Source
+	}
+	elseif ($r -ne 1) {
+		# do not close
+		$_.Ignore = $true
+	}
+}
+
+function FMCollectionPanel_MenuCreating {
+	# save data and reset change counter
+	$_.Menu.Items.Add((New-FarItem -Text 'Export data to file' -Click {
+		Save-BsonFile -Collection $this.Explorer.Data.Source
+		$this.Explorer.Data.ChangeCount = 0
+	}))
+}
+
 function FMCollectionExplorer_AsCreatePanel($1) {
 	$panel = [PowerShellFar.ObjectPanel]$1
-	$title = $1.Data.Collection.CollectionNamespace.CollectionName
-	if ($1.Data.Collection -ne $1.Data.Source) {
-		$title = "$title ($($1.Data.Source.CollectionNamespace.CollectionName))"
+
+	if ($1.Data.BsonFile) {
+		$title = [System.IO.Path]::GetFileName($1.Data.BsonFile)
+		$panel.add_Escaping({FMCollectionPanel_Escaping})
+		$panel.add_MenuCreating({FMCollectionPanel_MenuCreating})
 	}
+	else {
+		$title = $1.Data.Collection.CollectionNamespace.CollectionName
+		if ($1.Data.Collection -ne $1.Data.Source) {
+			$title = "$title ($($1.Data.Source.CollectionNamespace.CollectionName))"
+		}
+	}
+
 	if ($1.Data.Pipeline) {
 		$panel.Title = $title + ' (aggregate)'
 	}
@@ -29,6 +73,7 @@ function FMCollectionExplorer_AsCreatePanel($1) {
 		$panel.Title = $title
 		$panel.PageLimit = 1000
 	}
+
 	$1.Data.Panel = $panel
 	$panel
 }
@@ -64,6 +109,7 @@ function FMCollectionExplorer_AsCreateFile($1, $2) {
 
 	# add document
 	try {
+		++$1.Data.ChangeCount
 		Add-MdbcData $new -Collection $1.Data.Source
 	}
 	catch {
@@ -74,7 +120,6 @@ function FMCollectionExplorer_AsCreateFile($1, $2) {
 	# post the dummy file with new _id
 	$data = [PSCustomObject]@{_id = ([Mdbc.Dictionary]$new)._id}
 	$2.PostFile = New-FarFile -Data $data
-
 	$1.Data.Panel.NeedsNewFiles = $true
 }
 
@@ -87,7 +132,8 @@ function FMCollectionExplorer_AsDeleteFiles($1, $2) {
 	# remove
 	try {
 		foreach($doc in $2.FilesData) {
-			Remove-MdbcData @{_id=$doc._id} -Collection $1.Data.Source
+			++$1.Data.ChangeCount
+			Remove-MdbcData @{_id = $doc._id} -Collection $1.Data.Source
 		}
 	}
 	catch {
@@ -139,6 +185,7 @@ function FMCollectionExplorer_AsSetText($1, $2) {
 	}
 
 	try {
+		++$1.Data.ChangeCount
 		Set-MdbcData @{_id = $id} $new -Collection $1.Data.Source
 	}
 	catch {

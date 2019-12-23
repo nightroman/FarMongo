@@ -49,26 +49,29 @@
 		in order to customise the view of this collection in the panel.
 
 .Parameter Collection
-		Specifies the collection instance. Use Pipeline in order to customise
-		the view. Connection and database are not used with this parameter.
+		Specifies the collection instance.
+
+.Parameter BsonFile
+		Specifies the .bson or .json file to be opened by the BsonFile module.
+		Requires: https://github.com/nightroman/BsonFile
+
+		If you change data then on closing you are prompted to export data.
+		Alternatively, use the menu [F1] \ "Export data to file", any time.
 
 .Parameter Pipeline
 		Aggregation pipeline for the custom view of the specified collection.
 
 .Example
+	># Panel local databases:
 	Open-MongoPanel
 
-	This command shows local databases in the panel.
-
 .Example
+	># Panel collections of "myDatabase":
 	Open-MongoPanel . myDatabase
 
-	This command shows collections of "myDatabase".
-
 .Example
+	># Panel documents of "myDatabase.myCollection":
 	Open-MongoPanel . myDatabase myCollection
-
-	This command shows documents of "myDatabase.myCollection".
 #>
 function Open-MongoPanel {
 	[CmdletBinding(DefaultParameterSetName='Connect')]
@@ -85,10 +88,16 @@ function Open-MongoPanel {
 		[Parameter(ParameterSetName='Collection', Mandatory=1)]
 		[MongoDB.Driver.IMongoCollection[MongoDB.Bson.BsonDocument]]$Collection
 		,
+		[Parameter(ParameterSetName='BsonFile', Mandatory=1)]
+		[string]$BsonFile
+		,
 		[Parameter(ParameterSetName='Connect')]
 		[Parameter(ParameterSetName='Collection')]
+		[Parameter(ParameterSetName='BsonFile')]
 		$Pipeline
 	)
+
+	trap {Write-Error -ErrorRecord $_}
 
 	if ($Collection) {
 		(New-FMCollectionExplorer $Collection $Pipeline).OpenPanel()
@@ -100,6 +109,11 @@ function Open-MongoPanel {
 	elseif ($DatabaseName) {
 		Connect-Mdbc $ConnectionString $DatabaseName
 		(New-FMDatabaseExplorer $Database).OpenPanel()
+	}
+	elseif ($BsonFile) {
+		Import-Module BsonFile
+		Open-BsonFile $BsonFile
+		(New-FMCollectionExplorer $Collection $Pipeline -BsonFile $BsonFile).OpenPanel()
 	}
 	else {
 		(New-FMServerExplorer $ConnectionString).OpenPanel()

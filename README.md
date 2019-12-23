@@ -1,17 +1,10 @@
 # FarMongo
 
-PowerShell module with MongoDB tools for Far Manager
+PowerShell module with MongoDB browser in Far Manager
 
-**WARNING**: With this module tools you can change and delete databases,
-collections, documents, and data. Use it on your own risk and be careful.
+For the requirements and details, see [about_FarMongo.help.txt](https://github.com/nightroman/FarMongo/blob/master/about_FarMongo.help.txt)
 
-Requires:
-
-- [Far Manager, FarNet, PowerShellFar](https://github.com/nightroman/FarNet/wiki)
-- [MongoDB server](http://www.mongodb.org/)
-- [Mdbc module](https://www.powershellgallery.com/packages/Mdbc)
-
-**How to use**
+**How to start**
 
 Install the module from the PowerShell gallery by this command:
 
@@ -23,22 +16,13 @@ You can use the usual `Install-Module FarMongo` command, too, it's fine.
 But the module works only with Far Manager, FarNet, and PowerShellFar.
 PowerShellFar has its own special directory for PowerShell modules.
 
-In Far Manager, import the module:
+Import the module and get help:
 
-```
-ps: Import-Module FarMongo
-```
-
-See command help:
-
-```
-ps: help Open-MongoPanel -full
+```powershell
+Import-Module FarMongo
+help about_FarMongo
 ```
 
-The module provides the following commands:
-
-- [Open-MongoPanel](https://github.com/nightroman/FarMongo/blob/master/Scripts/Open-MongoPanel.ps1)
-
-See also
+**See also**
 
 - [Release Notes](https://github.com/nightroman/FarMongo/blob/master/Release-Notes.md)

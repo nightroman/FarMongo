@@ -1,7 +1,7 @@
 @{
 	Author = 'Roman Kuzmin'
 	ModuleVersion = '0.0.0'
-	Description = 'MongoDB tools for Far Manager'
+	Description = 'MongoDB browser in Far Manager'
 	CompanyName = 'https://github.com/nightroman'
 	Copyright = 'Copyright (c) Roman Kuzmin'
 	GUID = '9e8ed9eb-ca8a-487d-be47-d20f5e129b6f'

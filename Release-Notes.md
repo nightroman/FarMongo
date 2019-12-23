@@ -1,5 +1,13 @@
 # FarMongo Release Notes
 
+## v0.3.0
+
+New parameter `BsonFile` of `Open-MongoPanel` opens .bson or .json files as special collections.
+Requires [BsonFile](https://github.com/nightroman/BsonFile), see its help.
+
+If you change data then on closing you are prompted to export data to the original file.
+Alternatively, use the menu <kbd>F1</kbd> \ "Export data to file", any time.
+
 ## v0.2.0
 
 Documents panel creates a new document by `[F7]`.

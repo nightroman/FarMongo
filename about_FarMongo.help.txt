@@ -2,7 +2,7 @@ TOPIC
     about_FarMongo
 
 SHORT DESCRIPTION
-    MongoDB tools for Far Manager
+    MongoDB browser in Far Manager
 
 LONG DESCRIPTION
     **WARNING**: With this module tools you can change and delete databases,
@@ -11,12 +11,37 @@ LONG DESCRIPTION
     Requires:
     - Far Manager, FarNet, PowerShellFar
     - MongoDB server http://www.mongodb.org/
-    - Mdbc module https://www.powershellgallery.com/packages/Mdbc
+    - Mdbc module https://github.com/nightroman/Mdbc
 
-    The module provides the following commands:
+    Optional:
+    - BsonFile module https://github.com/nightroman/BsonFile
+
+    FarMongo provides the following command:
 
         Open-MongoPanel
 
+    Import the module and get help about parameters and features:
+
+        Import-Module FarMongo
+        help Open-MongoPanel -full
+
+    This command opens Far Manager panels for browsing MongoDB data.
+    Views and aggregation pipelines are supported.
+    Panels and features:
+
+        Documents: view, edit, create, delete documents
+        Databases: view, delete databases, open collection panels
+        Collections: view, rename, delete collections, open document panels
+
+BSON/JSON FILES
+    With optional BsonFile module, you can browse and edit BSON/JSON files:
+
+        Open-MongoPanel -BsonFile ...\MyData.bson
+
+    If you change data then on closing you are prompted to export data.
+    Alternatively, use the menu [F1] \ "Export data to file", any time.
+
+    See BsonFile documentation for some details about its work.
+
 SEE ALSO
-    README https://github.com/nightroman/FarMongo/blob/master/README.md
     Release Notes https://github.com/nightroman/FarMongo/blob/master/Release-Notes.md
