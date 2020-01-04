@@ -1,5 +1,10 @@
 # FarMongo Release Notes
 
+## v0.4.0
+
+Add `Edit-MongoJsonLine`, the JSON editor helper.
+For now it should be invoked manually.
+
 ## v0.3.0
 
 New parameter `BsonFile` of `Open-MongoPanel` opens .bson or .json files as special collections.

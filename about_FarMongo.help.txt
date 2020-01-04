@@ -16,15 +16,12 @@ LONG DESCRIPTION
     Optional:
     - BsonFile module https://github.com/nightroman/BsonFile
 
-    FarMongo provides the following command:
+    FarMongo provides the following commands:
 
         Open-MongoPanel
+        Edit-MongoJsonLine
 
-    Import the module and get help about parameters and features:
-
-        Import-Module FarMongo
-        help Open-MongoPanel -full
-
+Open-MongoPanel
     This command opens Far Manager panels for browsing MongoDB data.
     Views and aggregation pipelines are supported.
     Panels and features:
@@ -32,6 +29,19 @@ LONG DESCRIPTION
         Documents: view, edit, create, delete documents
         Databases: view, delete databases, open collection panels
         Collections: view, rename, delete collections, open document panels
+
+    Import the module and get help about parameters and features:
+
+        Import-Module FarMongo
+        help Open-MongoPanel -full
+
+Edit-MongoJsonLine
+    This command helps to edit JSON strings, especially multilines, when JSON
+    is opened in the editor, for example a document opened by [F4]. For the
+    moment, it should be invoked manually, either from the PowerShellFar
+    command box or using a macro. See
+
+        help Edit-MongoJsonLine
 
 BSON/JSON FILES
     With optional BsonFile module, you can browse and edit BSON/JSON files:

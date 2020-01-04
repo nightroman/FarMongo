@@ -1,6 +1,7 @@
 $ErrorActionPreference = 1
 Import-Module Mdbc
 
+. $PSScriptRoot\Edit-MongoJsonLine.ps1
 . $PSScriptRoot\New-FMCollectionExplorer.ps1
 . $PSScriptRoot\New-FMDatabaseExplorer.ps1
 . $PSScriptRoot\New-FMServerExplorer.ps1

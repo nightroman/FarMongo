@@ -14,7 +14,10 @@
 	AliasesToExport = @()
 	CmdletsToExport = @()
 	VariablesToExport = @()
-	FunctionsToExport = 'Open-MongoPanel'
+	FunctionsToExport = @(
+		'Edit-MongoJsonLine'
+		'Open-MongoPanel'
+	)
 
 	PrivateData = @{
 		PSData = @{
