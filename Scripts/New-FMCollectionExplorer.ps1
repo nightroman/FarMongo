@@ -92,7 +92,7 @@ function FMCollectionExplorer_AsCreateFile($1, $2) {
 			return
 		}
 		try {
-			$new = [MongoDB.Bson.BsonDocument]::Parse($json)
+			$new = [Mdbc.Dictionary]::FromJson($json)
 			break
 		}
 		catch {
@@ -100,12 +100,8 @@ function FMCollectionExplorer_AsCreateFile($1, $2) {
 		}
 	}
 
-	# generate missing _id, to post
-	if (!$new.Contains('_id')) {
-		$id = [MongoDB.Bson.BsonObjectId]([MongoDB.Bson.ObjectId]::GenerateNewId())
-		$id = New-Object MongoDB.Bson.BsonElement ('_id', $id)
-		$new.InsertAt(0, $id)
-	}
+	# _id to post
+	$new.EnsureId()
 
 	# add document
 	try {
@@ -117,9 +113,8 @@ function FMCollectionExplorer_AsCreateFile($1, $2) {
 		return
 	}
 
-	# post the dummy file with new _id
-	$data = [PSCustomObject]@{_id = ([Mdbc.Dictionary]$new)._id}
-	$2.PostFile = New-FarFile -Data $data
+	# post dummy file with _id
+	$2.PostFile = New-FarFile -Data ([PSCustomObject]@{_id = $new._id})
 	$1.Data.Panel.NeedsNewFiles = $true
 }
 
@@ -178,7 +173,7 @@ function FMCollectionExplorer_AsSetText($1, $2) {
 		return
 	}
 
-	$new = [MongoDB.Bson.BsonDocument]::Parse($2.Text)
+	$new = [Mdbc.Dictionary]::FromJson($2.Text)
 	if ($id -cne $new['_id']) {
 		Show-FarMessage "Cannot change _id."
 		return

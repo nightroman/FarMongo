@@ -27,12 +27,11 @@ function Edit-MongoJsonLine {
 
 	$json = "{$text}"
 	try {
-		$bson = [MongoDB.Bson.BsonDocument]::Parse($json)
+		$doc = [Mdbc.Dictionary]::FromJson($json)
 	}
 	catch {
 		throw "Cannot parse JSON: $json"
 	}
-	$doc = New-MdbcData $bson
 	$key = @($doc.Keys)[0]
 	$value = @($doc.Values)[0]
 	if ($value -isnot [string]) {

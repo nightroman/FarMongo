@@ -1,5 +1,9 @@
 # FarMongo Release Notes
 
+## v0.4.1
+
+Requires Mdbc v6.5.1 and uses its new features to simplify some code.
+
 ## v0.4.0
 
 Add `Edit-MongoJsonLine`, the JSON editor helper.
