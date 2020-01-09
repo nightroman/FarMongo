@@ -167,24 +167,16 @@ function FMCollectionExplorer_AsGetData($1, $2) {
 }
 
 function FMCollectionExplorer_AsSetText($1, $2) {
-	$id = $2.File.Data._id
-	if ($null -eq $id) {
-		Show-FarMessage "Document must have _id."
-		return
-	}
-
 	$new = [Mdbc.Dictionary]::FromJson($2.Text)
-	if ($id -cne $new['_id']) {
-		Show-FarMessage "Cannot change _id."
-		return
-	}
+	$new.EnsureId()
 
 	try {
 		++$1.Data.ChangeCount
-		Set-MdbcData @{_id = $id} $new -Collection $1.Data.Source
+		$new | Set-MdbcData -Add -Collection $1.Data.Source
 	}
 	catch {
 		Show-FarMessage $_
+		return
 	}
 
 	$1.Cache.Clear()

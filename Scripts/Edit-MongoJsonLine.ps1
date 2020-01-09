@@ -6,7 +6,7 @@
 	This command is called from the editor with a JSON file and the current
 	line like `<key> : "<text>"`. The line may ends with a comma. The <text>
 	is opened in another editor. After saved changes the current line is set
-	to ``<key> : "<new-text>"`, with a comma if it was there.
+	to `<key> : "<new-text>"`, with a comma if it was there.
 #>
 
 function Edit-MongoJsonLine {
