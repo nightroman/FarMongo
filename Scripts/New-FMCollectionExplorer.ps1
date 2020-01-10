@@ -78,14 +78,24 @@ function FMCollectionExplorer_AsCreatePanel($1) {
 	$panel
 }
 
+function FMCollectionExplorer_EditorOpened {
+	$this.add_KeyDown({
+		if ($_.Key.KeyDown -and $_.Key.Is([FarNet.KeyCode]::F4)) {
+			$_.Ignore = $true
+			Edit-MongoJsonLine
+		}
+	})
+}
+
 function FMCollectionExplorer_AsCreateFile($1, $2) {
 	# edit new json
 	$json = ''
 	for() {
 		$arg = New-Object FarNet.EditTextArgs -Property @{
 			Title = 'New document (JSON)'
-			Extension = '.js'
+			Extension = 'js'
 			Text = $json
+			EditorOpened = {FMCollectionExplorer_EditorOpened}
 		}
 		$json = $Far.AnyEditor.EditText($arg)
 		if (!$json) {
@@ -148,8 +158,9 @@ function FMCollectionExplorer_AsGetContent($1, $2) {
 	}
 
 	$2.UseText = $doc.Print()
-	$2.UseFileExtension = '.js'
+	$2.UseFileExtension = 'js'
 	$2.CanSet = $true
+	$2.EditorOpened = {FMCollectionExplorer_EditorOpened}
 }
 
 function FMCollectionExplorer_AsGetData($1, $2) {

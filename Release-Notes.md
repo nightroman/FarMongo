@@ -1,5 +1,14 @@
 # FarMongo Release Notes
 
+## v0.4.2
+
+Requires FarNet 5.2.22
+
+<kbd>F4</kbd> in JSON editors calls `Edit-MongoJsonLine`.
+
+On editing documents (<kbd>F4</kbd> in panels with documents), changing the
+document `_id` is now allowed. As a result, you can kind of copy documents.
+
 ## v0.4.1
 
 Requires Mdbc v6.5.1 and uses its new features to simplify some code.
@@ -19,7 +28,7 @@ Alternatively, use the menu <kbd>F1</kbd> \ "Export data to file", any time.
 
 ## v0.2.0
 
-Documents panel creates a new document by `[F7]`.
+Documents panel creates a new document by <kbd>F7</kbd>.
 It opens the editor for the new document JSON.
 
 ## v0.1.0

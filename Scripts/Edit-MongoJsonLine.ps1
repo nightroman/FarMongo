@@ -55,4 +55,5 @@ function Edit-MongoJsonLine {
 	}
 
 	$Editor.Line.Text = $text
+	$Editor.Redraw()
 }
