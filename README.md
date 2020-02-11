@@ -25,4 +25,5 @@ help about_FarMongo
 
 **See also**
 
-- [Release Notes](https://github.com/nightroman/FarMongo/blob/master/Release-Notes.md)
+- [FarMongo Release Notes](https://github.com/nightroman/FarMongo/blob/master/Release-Notes.md)
+- [FarLite, similar project for LiteDB](https://github.com/nightroman/FarLite)
