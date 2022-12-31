@@ -24,7 +24,7 @@
 			Tags = 'FarManager', 'Mongo', 'MongoDB', 'Database'
 			ProjectUri = 'https://github.com/nightroman/FarMongo'
 			LicenseUri = 'http://www.apache.org/licenses/LICENSE-2.0'
-			ReleaseNotes = 'https://github.com/nightroman/FarMongo/blob/master/Release-Notes.md'
+			ReleaseNotes = 'https://github.com/nightroman/FarMongo/blob/main/Release-Notes.md'
 		}
 	}
 }

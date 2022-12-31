@@ -2,7 +2,7 @@
 
 PowerShell module with MongoDB browser in Far Manager
 
-For the requirements and details, see [about_FarMongo.help.txt](https://github.com/nightroman/FarMongo/blob/master/about_FarMongo.help.txt)
+For the requirements and details, see [about_FarMongo.help.txt](https://github.com/nightroman/FarMongo/blob/main/about_FarMongo.help.txt)
 
 **How to start**
 
@@ -25,5 +25,5 @@ help about_FarMongo
 
 **See also**
 
-- [FarMongo Release Notes](https://github.com/nightroman/FarMongo/blob/master/Release-Notes.md)
+- [FarMongo Release Notes](https://github.com/nightroman/FarMongo/blob/main/Release-Notes.md)
 - [FarLite, similar project for LiteDB](https://github.com/nightroman/FarLite)

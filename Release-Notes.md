@@ -1,5 +1,9 @@
 # FarMongo Release Notes
 
+## v1.0.0
+
+master -> main, updated links
+
 ## v0.4.2
 
 Requires FarNet 5.2.22

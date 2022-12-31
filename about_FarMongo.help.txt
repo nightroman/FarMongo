@@ -58,4 +58,4 @@ BSON/JSON FILES
     See BsonFile documentation for some details about its work.
 
 SEE ALSO
-    Release Notes https://github.com/nightroman/FarMongo/blob/master/Release-Notes.md
+    Release Notes https://github.com/nightroman/FarMongo/blob/main/Release-Notes.md
