@@ -8,8 +8,6 @@
 
 	RootModule = 'FarMongo.psm1'
 	RequiredModules = 'Mdbc'
-	PowerShellVersion = '3.0'
-	DotNetFrameworkVersion = '4.5.2'
 
 	AliasesToExport = @()
 	CmdletsToExport = @()

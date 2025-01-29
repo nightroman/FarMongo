@@ -38,11 +38,10 @@ function Edit-MongoJsonLine {
 		throw "Value should be string."
 	}
 
-	$arg = New-Object FarNet.EditTextArgs -Property @{
-		Title = "Edit string value '$key'"
-		Extension = '.txt'
-		Text = $value
-	}
+	$arg = [FarNet.EditTextArgs]::new()
+	$arg.Title = "Edit string value '$key'"
+	$arg.Extension = '.txt'
+	$arg.Text = $value
 	$value2 = $Far.AnyEditor.EditText($arg)
 	if ($value2 -ceq $value) {
 		return

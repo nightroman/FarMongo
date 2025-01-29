@@ -113,9 +113,9 @@ function Open-MongoPanel {
 	elseif ($BsonFile) {
 		Import-Module BsonFile
 		Open-BsonFile $BsonFile
-		(New-FMCollectionExplorer $Collection $Pipeline -BsonFile $BsonFile).OpenPanel()
+		(New-FMCollectionExplorer $Collection $Pipeline -BsonFile $BsonFile).CreatePanel().Open()
 	}
 	else {
-		(New-FMServerExplorer $ConnectionString).OpenPanel()
+		(New-FMServerExplorer $ConnectionString).CreatePanel().Open()
 	}
 }
