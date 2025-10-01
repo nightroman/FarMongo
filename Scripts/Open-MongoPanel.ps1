@@ -100,15 +100,15 @@ function Open-MongoPanel {
 	trap {Write-Error -ErrorRecord $_}
 
 	if ($Collection) {
-		(New-FMCollectionExplorer $Collection $Pipeline).OpenPanel()
+		(New-FMCollectionExplorer $Collection $Pipeline).CreatePanel().Open()
 	}
 	elseif ($CollectionName) {
 		Connect-Mdbc $ConnectionString $DataBaseName $CollectionName
-		(New-FMCollectionExplorer $Collection $Pipeline).OpenPanel()
+		(New-FMCollectionExplorer $Collection $Pipeline).CreatePanel().Open()
 	}
 	elseif ($DatabaseName) {
 		Connect-Mdbc $ConnectionString $DatabaseName
-		(New-FMDatabaseExplorer $Database).OpenPanel()
+		(New-FMDatabaseExplorer $Database).CreatePanel().Open()
 	}
 	elseif ($BsonFile) {
 		Import-Module BsonFile

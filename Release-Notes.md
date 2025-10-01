@@ -1,5 +1,9 @@
 # FarMongo Release Notes
 
+## v1.0.2
+
+Replace obsolete FarNet code
+
 ## v1.0.1
 
 Refactoring.

@@ -6,10 +6,10 @@ For the requirements and details, see [about_FarMongo.help.txt](https://github.c
 
 **How to start**
 
-Install the module from the PowerShell gallery by this command:
+Get from [PSGallery](https://www.powershellgallery.com/packages/FarMongo)
 
 ```powershell
-Save-Module FarMongo -Path $env:FARHOME\FarNet\Modules\PowerShellFar\Modules
+Save-Module FarMongo -Path $env:FARPROFILE\FarNet\PowerShellFar\Modules
 ```
 
 You can use the usual `Install-Module FarMongo` command, too, it's fine.
