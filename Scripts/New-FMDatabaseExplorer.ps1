@@ -43,7 +43,7 @@ function FMDatabaseExplorer_AsDeleteFiles($Explorer, $2) {
 $($2.Files.Count) collection(s):
 $($2.Files[0..9] -join "`n")
 "@
-		if (Show-FarMessage $text Delete YesNo -LeftAligned) {return}
+		if (Show-FarMessage $text Delete YesNo) {return}
 	}
 	# drop
 	foreach($file in $2.Files) {
